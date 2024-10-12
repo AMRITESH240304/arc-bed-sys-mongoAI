@@ -21,4 +21,4 @@ def read_root():
     return {"Hello": "Welcome to the MongoDB AI Hackathon"}
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host=settings.HOST, port=settings.PORT, reload=True)
+    uvicorn.run("app.main:app", reload=True)
