@@ -4,8 +4,15 @@ from .config import settings
 import uvicorn
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from app.db.database import connect_to_mongo
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    connect_to_mongo()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,7 +26,10 @@ app.include_router(router)
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Welcome to the MongoDB AI Hackathon"}
+    return {
+        "Hello": "Welcome to the MongoDB AI Hackathon",
+        "DB":"MongoDB"
+        }
 
 @app.head("/")
 def read_head():
