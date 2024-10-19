@@ -3,3 +3,5 @@ uvicorn
 pydantic-settings
 python-dotenv
 pymongo
+boto3
+awscli
