@@ -5,3 +5,9 @@ python-dotenv
 pymongo
 boto3
 awscli
+httpx
+langchain
+langchain-community
+crewai
+crewai-tools
+langchain-google-community

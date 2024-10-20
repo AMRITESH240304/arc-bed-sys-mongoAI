@@ -1,6 +1,6 @@
-from fastapi import APIRouter,HTTPException
+from fastapi import APIRouter
 from ..services.google_search_service import GoogleSearchService
-import httpx
+# from ..services.crew_ai_service.crew import maincrew
 
 router = APIRouter()
 
@@ -10,4 +10,9 @@ def say_hello():
 
 @router.get("/search")
 async def search_from_google(query: str,num_of_search_results:int):
-    return await GoogleSearchService().search(query,num_of_search_results)
+    return await GoogleSearchService().langSearch(query, num_of_search_results)
+
+@router.get("/crewkickoff")
+async def webcrawl(url:str):
+    # await maincrew()
+    pass
