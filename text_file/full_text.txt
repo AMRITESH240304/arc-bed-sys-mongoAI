@@ -1,0 +1,85 @@
+Amrtitesh Kumar
+
+M4 amriteshk778@gmail.com
+
+Q Chennai-603203
+
+in https://www.linkedin.com/in/amritesh-kumar-
+55a459207/
+
+Skills
+
+Machine Learning, Deeplearning,NLP,LLM
+Developed helpful real world applications with
+production level accuracy.
+
+Programming Languages
+Python Javascript,C++,C
+
+Projects
+
+2024/01 - 2024/01 Jai Kisan
+
+Q&, 9158188174
+
+€) https://github.com/AMRITESH240304
+
+Development Technologies
+
+ML Algorithms,TensorFlow,Pytorch
+Resnet50,VGG19,EfficientNetBO,CNN,RNN,FastApi,
+NodeJs,MongoDB
+
+A cross platform app with ML integration which helps Indian farmers in getting best prices for there
+crops. Using RandomForest for price prediction and sentimental analysis to get variation in price by
+the current news in the area.
+
+Tech used
+
+e Random forest
+
+e Sentimental Analysis
+e Deep Learning
+
+2023/10 - 2023/10 Samvidhan Ai
+
+A Hackthon project which lead to help our Youth and upcoming Entrepreneur to help in Opening
+their Company and all the legal process which they have go thorough. By the help of LLM model and
+
+using Qlora for the finetunning process.
+
+Tech Used
+
+e Bart LLM model
+e Qlora
+
+e FastApi
+
+2023/06 - 2023/07 Stop Sign Generator
+
+Using DCGAN and making the discriminator and generator to genrate stop signs and also to
+training stop sign to detect the generated stop signs
+
+Tech Used
+e DCGAN
+e FastApi
+e YOLO
+
+e SSD
+
+Organizations
+
+Coding Ninza SRM
+AIML Lead
+
+Awards
+
+Techmesh (Ideathon) Winner 2023
+
+Education
+
+2022/09 - 2026/05 B.Tech
+
+Chennai, India SRM INSTITUTE OF SCIENCE AND TECHNOLOGY
+
+CGPA:-8.36
