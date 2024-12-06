@@ -1,7 +1,16 @@
 from crewai import Task
-from app.services.crew_ai_service.tools import tool
+from app.services.crew_ai_service.tools import tool,scrapeTool
 from ...config import settings
 from app.services.crew_ai_service.agents import news_researcher, news_writer
+
+savingTask = Task(
+  description=(
+    "Save the latest scrape data"
+  ),
+  expected_output='A text file containing the latest news data.',
+  agent=news_researcher,
+  output_file='latest-news.txt'
+)
 
 research_task = Task(
   description=(
@@ -11,8 +20,8 @@ research_task = Task(
     "its market opportunities, and potential risks."
   ),
   expected_output='A comprehensive 3 paragraphs long report on the latest AI trends.',
-  tools=[tool],
   agent=news_researcher,
+  output_file='ai-trends-report.txt'
 )
 
 # Writing task with language model configuration
