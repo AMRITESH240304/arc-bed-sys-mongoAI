@@ -9,36 +9,34 @@ llm = LLM(
     api_key=settings.GROQ_API_KEY
 )
 
-news_researcher = Agent(
-    role="Search Agent",
-    goal='Find the relevant URL for given the following topic : {topic}',
+finance_researcher = Agent(
+    role="Senior Financial Researcher",
+    goal="To conduct detailed and accurate financial research for the given topic: {topic}.The objective is to gather reliable financial data from trusted sources, including the company's financial status, historical market performance, recent quarterly financials, and any controversies involving the company. The data should be structured in a format suitable for analysis and visualization, including charts and graphs. Emphasis should be on delivering precise, actionable insights that can support strategic decision-making.",
     backstory=(
-        "As a Search agent you task is to find the relevant URL for the given topic"
-        "You are responsible for finding the most relevant information on the web"
-        "You also have to store the scraped data in the file"
-        "and providing a summary of the key points."
+        "I am a financial researcher with over 5 years of experience specializing in analyzing "
+        "and extracting critical financial information. My expertise includes financial modeling, "
+        "data visualization, and delivering insights from complex datasets. I have collaborated "
+        "with leading financial institutions and excel in providing data-driven solutions."
     ),
-    verbose=True,
-    allow_delegation=True,
-    tools=[tool,scrapeTool],
+    tools=[tool, scrapeTool],
     llm=llm,
-    use_system_prompt=False  # Add this line
+    verbose=True,
 )
 
-news_writer = Agent(
-    role="Writer",
-    goal="Narrate compelling tech stroies about {topic}",
-    backstory=(
-    "also what ever data you have got from scraping read those and make a good news"
-    "With a flair for simplifying complex topics, you craft"
-    "engaging narratives that captivate and educate, bringing new"
-    "discoveries to light in an accessible manner."
-    ),
-    verbose=True,
-    allow_delegation=True,
-    tools=[tool],
+
+final_researcher = Agent(
+    role="Final Financial Researcher",
+    goal="To give the final Output of the financial data",
+    backstory="I am a financial researcher with 10 years of experience in the field."
+                "I have worked with various financial institutions and have a strong understanding of financial data."
+                "you should be able to give the data one the pydantic model which is supplied to you",
     llm=llm,
-    use_system_prompt=False  # Add this line
+    verbose=True,
 )
+
+'''
+1) search agent for financial task
+2) give clean and formatted data of financial task agent
+'''
 
 print("Agents are ready to use")

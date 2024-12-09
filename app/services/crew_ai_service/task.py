@@ -1,39 +1,30 @@
 from crewai import Task
-from app.services.crew_ai_service.tools import tool,scrapeTool
+from app.services.crew_ai_service.tools import tool, scrapeTool
 from ...config import settings
-from app.services.crew_ai_service.agents import news_researcher, news_writer
+from app.services.crew_ai_service.agents import finance_researcher, final_researcher
+from pydantic import BaseModel
 
-savingTask = Task(
-  description=(
-    "Save the latest scrape data"
-  ),
-  expected_output='A text file containing the latest news data.',
-  agent=news_researcher,
-  output_file='latest-news.txt'
+class FinancialData(BaseModel):
+    company_name: str
+    revenue: float
+    net_income: float
+    total_assets: float
+    chart: list
+
+# Define the finance_researcher_task
+finance_researcher_task = Task(
+    description=(
+        "Conduct financial research on the given topic: {topic} "
+    ),
+    agent=finance_researcher,
+    expected_output="Clean and formatted financial data",
+    tools=[tool, scrapeTool],
+    output_pydantic=FinancialData,
 )
 
-research_task = Task(
-  description=(
-    "Identify the next big trend in {topic}."
-    "Focus on identifying pros and cons and the overall narrative."
-    "Your final report should clearly articulate the key points,"
-    "its market opportunities, and potential risks."
-  ),
-  expected_output='A comprehensive 3 paragraphs long report on the latest AI trends.',
-  agent=news_researcher,
-  output_file='ai-trends-report.txt'
-)
-
-# Writing task with language model configuration
-write_task = Task(
-  description=(
-    "Compose an insightful article on {topic}."
-    "Focus on the latest trends and how it's impacting the industry."
-    "This article should be easy to understand, engaging, and positive."
-  ),
-  expected_output='A 4 paragraph article on {topic} advancements formatted as markdown.',
-  tools=[tool],
-  agent=news_writer,
-  async_execution=False,
-  output_file='new-blog-post.md'  # Example of output customization
+# Define the final_task with a proper expected_output
+final_task = Task(
+    description="Finalize the financial data.",
+    agent=final_researcher,
+    expected_output="provide me paragraph with all the necessary data",
 )
