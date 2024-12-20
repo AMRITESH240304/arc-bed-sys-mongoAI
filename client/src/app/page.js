@@ -55,10 +55,10 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <Card className="w-full max-w-2xl">
+    <div className="bg-black flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      <Card className="bg-black w-full ">
         <CardHeader>
-          <CardTitle>Chat</CardTitle>
+          <CardTitle className="text-white">Chat</CardTitle>
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-[60vh] pr-4">
