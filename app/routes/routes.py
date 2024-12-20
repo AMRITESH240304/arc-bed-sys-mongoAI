@@ -3,8 +3,12 @@ from ..services.google_search_service import GoogleSearchService
 from ..services.crew_ai_service.crew import crewKickOf
 from ..db.database import storeEmbeddings
 from ..services.gemini_service import get_json
+from pydantic import BaseModel
 
 router = APIRouter()
+
+class InputModel(BaseModel):
+    input: str
 
 @router.get("/hello")
 def say_hello():
@@ -15,10 +19,10 @@ async def search_from_google(query: str,num_of_search_results:int):
     return await GoogleSearchService().langSearch(query, num_of_search_results)
 
 @router.post("/crewkickoff")
-async def webcrawl(input:str):
-    storeResult = crewKickOf(input)
+async def webcrawl(payload: InputModel):
+    storeResult = crewKickOf(payload.input)
     end_result = get_json(storeResult.raw)
-    return end_result
+    return {"end_result": end_result, "raw_result": storeResult.raw}
 
 @router.get('/testdb')
 async def testDB():
