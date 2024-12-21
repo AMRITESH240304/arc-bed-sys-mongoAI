@@ -10,4 +10,5 @@ langchain
 langchain-community
 crewai
 crewai-tools
+langchain_google_genai
 langchain-google-community
