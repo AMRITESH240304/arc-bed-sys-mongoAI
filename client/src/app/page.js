@@ -31,12 +31,16 @@ export default function ChatPage() {
 
         if (!response.ok) {
           throw new Error('Network response was not ok')
-        }
+        } 
 
         const data = await response.json()
+        let formattedContent = JSON.stringify(data.end_result, null, 2)
+          .replace(/\\n/g, '') // Remove newline escape sequences
+          .replace(/\\"/g, '"') // Replace escaped quotes with actual quotes
+          .replace(/\\\\/g, '\\');
         const responseMessage = { 
           id: Date.now() + 1, 
-          content: JSON.stringify(data.end_result, null, 2), 
+          content: JSON.stringify(formattedContent.end_result, null, 2), 
           sender: 'other' 
         }
         setMessages(prevMessages => [...prevMessages, responseMessage])

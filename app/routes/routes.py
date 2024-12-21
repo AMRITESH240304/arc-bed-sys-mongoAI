@@ -10,6 +10,11 @@ router = APIRouter()
 class InputModel(BaseModel):
     input: str
 
+def get_json_cleaned(raw_data):
+    # Clean up the raw JSON-like string
+    cleaned_data = raw_data.replace("\\n", "").replace("'", '"')
+    return cleaned_data
+
 @router.get("/hello")
 def say_hello():
     return {"message": "Hello from another route!"}
@@ -21,7 +26,7 @@ async def search_from_google(query: str,num_of_search_results:int):
 @router.post("/crewkickoff")
 async def webcrawl(payload: InputModel):
     storeResult = crewKickOf(payload.input)
-    end_result = get_json(storeResult.raw)
+    end_result = get_json_cleaned(get_json(storeResult.raw))
     return {"end_result": end_result, "raw_result": storeResult.raw}
 
 @router.get('/testdb')
